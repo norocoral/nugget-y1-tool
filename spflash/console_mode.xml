@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flashtool-config version="2.0">
+  <general>
+    <chip-name>MT6572</chip-name>
+    <storage-type>EMMC</storage-type>
+    <download-agent>MTK_AllInOne_DA.bin</download-agent>
+    <scatter>MT6572_Android_scatter.txt</scatter>
+    <rom-list>
+      <rom index="9" enable="true">boot.img</rom><rom index="13" enable="true">logo.bin</rom>
+    </rom-list>
+    <connection type="BromUSB" high-speed="true" power="AutoDetect" timeout-count="3600000" com-port="" />
+  </general>
+  <commands>
+    <da-download-all />
+  </commands>
+</flashtool-config>

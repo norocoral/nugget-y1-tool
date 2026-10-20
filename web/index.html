@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nugget Y1 Tool</title>
+  <link rel="icon" type="image/png" href="favi.png">
+  <meta name="description" content="Install Nugget on your Innioasis Y1 in a few easy steps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Jua&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="i18n.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div class="page">
+
+  <main>
+    <section class="window">
+      <nav class="menubar">
+        <div class="menu">
+          <button class="menu-btn" type="button">File</button>
+          <div class="menu-list">
+            <button type="button" id="mRestart">Start over</button>
+            <button type="button" id="mRecovery">Recovery mode</button>
+            <button type="button" id="localToggleBtn">Local mode</button>
+            <button type="button" id="mQuit">Quit</button>
+          </div>
+        </div>
+        <button class="menu-btn" type="button" id="langBtn">한국어</button>
+        <div class="menu">
+          <button class="menu-btn" type="button">Help</button>
+          <div class="menu-list">
+            <a href="https://github.com/norocoral/y1" target="_blank" rel="noopener">Nugget on GitHub</a>
+            <a href="https://github.com/norocoral/nugget-y1/issues" target="_blank" rel="noopener">Get help</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="window-body">
+        <div class="pager" id="pager"><i></i><i></i><i></i><i></i></div>
+
+        <!--1 INTRO-->
+        <div class="step-page on">
+          <img class="cimg" src="c/1.png" alt="" onerror="this.remove()">
+          <h1>Let's install Nugget on your Y1</h1>
+          <p class="lead">It only takes a few minutes and we'll do the hard parts for you. All you need is your Y1 and its USB cable.</p>
+          
+          <div class="actions">
+            <button class="btn" type="button" id="goBtn">Let's go</button>
+          </div>
+
+          <div class="card local-card hidden" id="localCard">
+            <h3>Local files</h3>
+            <p class="note">Select custom files to install instead of downloading from GitHub.</p>
+            <div class="file-pickers">
+              <label class="file-label">
+                <span>Boot image (.img) *</span>
+                <input type="file" id="bootFile" accept=".img">
+              </label>
+              <label class="file-label">
+                <span>Logo (.bin) [optional]</span>
+                <input type="file" id="logoFile" accept=".bin">
+              </label>
+              <label class="file-label">
+                <span>Rockbox archive (.zip) *</span>
+                <input type="file" id="zipFile" accept=".zip">
+              </label>
+            </div>
+            <button class="btn" type="button" id="startLocalBtn">Install from local files</button>
+          </div>
+
+          <p class="note">WARNING: Installing replaces the original software on your Y1. While extremely rare, it can cause the malfunction of the device. We are not responsible of the damage to your device. Only the Y1 TypeA device is supported.</p>
+        </div>
+
+        <!--2 DOWNLOAD MODE-->
+        <div class="step-page">
+          <img class="cimg" src="c/2.png" alt="" onerror="this.remove()">
+          <h2>Put your Y1 in Download mode</h2>
+          <ol class="steps">
+            <li><h3>Turn it off</h3><p>Make sure your Y1 is completely off and unplugged.</p></li>
+            <li><h3>Press the pinhole once</h3><p>Press the pinhole on the bottom of your Y1 once with a pin or paperclip. You don't need to hold it.</p></li>
+            <li><h3>Plug it in</h3><p>Connect the USB cable to your computer. The tool takes it from there.</p></li>
+          </ol>
+          <img src="screenshots/1.png"></figure>
+          <p class="status dyn" id="st2"></p>
+          <div class="meter-track prog"><div class="meter-fill meter-new" id="bar2" style="--fill:0%"></div></div>
+          <p class="note">Please don't unplug your Y1 while it's installing.</p>
+        </div>
+
+        <!--3 TURN ON-->
+        <div class="step-page">
+          <img class="cimg" src="c/3.png" alt="" onerror="this.remove()">
+          <h2>Turn your Y1 on and plug it back in</h2>
+          <p class="lead">Nugget is installed and your Y1 has switched itself off.</p>
+          <ol class="steps">
+            <li><h3>Unplug the cable</h3><p>Disconnect your Y1 from the computer.</p></li>
+            <li><h3>Turn it on</h3><p>Press and hold the center button on your Y1 and wait for it to start up.</p></li>
+            <li><h3>Plug it in again</h3><p>When it asks you to connect to a computer, plug the USB cable back in.</p></li>
+          </ol>
+          <img src="screenshots/3.png"></figure>
+          <p class="status dyn" id="st3"></p>
+          <div id="pick" class="hidden">
+            <p class="note">Not showing up? If you can see your Y1 below, pick it.</p>
+            <div class="picks dyn" id="picks"></div>
+          </div>
+        </div>
+
+        <!--4 COPY-->
+        <div class="step-page">
+          <img class="cimg" src="c/1.png" alt="" onerror="this.remove()">
+          <div id="copying">
+            <h2>Adding the finishing touches</h2>
+            <p class="lead">We're putting everything Nugget needs onto your Y1. This can take a few minutes.</p>
+            <p class="status dyn" id="st4"></p>
+            <div class="meter-track prog"><div class="meter-fill meter-new" id="bar4" style="--fill:0%"></div></div>
+            <p class="note">Please don't unplug your Y1 while files are copying.</p>
+          </div>
+          <div id="done" class="hidden">
+            <h2>You're all set!</h2>
+            <p class="lead">Safely eject your Y1, unplug it and turn it on. Welcome to Nugget.</p>
+            <p><button class="btn" type="button" id="closeBtn">Close</button></p>
+          </div>
+        </div>
+
+        <div class="card error hidden" id="error">
+          <h3>Something went wrong</h3>
+          <p class="dyn" id="errText"></p>
+          <p><button class="btn" type="button" id="retryBtn">Try again</button></p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
